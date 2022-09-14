@@ -8,27 +8,34 @@ import static org.junit.Assert.*;
 public class WalkTest {
 
     @Test
-    public void returnsArray(){
-        String[] direction = new String[]{"n", "s", "e", "w"};
-        Walk walk = new Walk(direction);
-        assertArrayEquals(direction,walk.route());
+    public void validWalkCharArrayShortRouteReturnFalse(){
+        char[] route = new char[]{'n', 's', 'e', 'w'};
+        Walk walk = new Walk(route);
+        assertFalse(walk.validWalk());
     }
 
     @Test
-    public void returnsArrayWith10Blocks(){
-        String[] direction = new String[]{"n", "s", "e", "w"};
-        Walk walk = new Walk(direction);
-        int steps = walk.getDirection().length;
-        assertTrue(steps !=10);
+    public void validWalkCharArrayWith10PointsReturnTrue(){
+        char[] route = new char[] {'n','s','n','s','n','s','n','s','n','s'};
+        Walk walk = new Walk(route);
+        assertTrue(walk.validWalk());
     }
 
     @Test
-    public void returnsTrue(){
-        String[] direction = new String[]{"w", "s", "e", "e", "n", "n", "e", "s", "w", "w"};
-        Walk walk = new Walk(direction);
-        assertTrue(walk.returnToStart());
-
+    public void validWalkCharArrayWithCorrectRouteReturnTrue(){
+        char[] route = new char[]{'w','s','e','e','n','n','e','s','w','w'};
+        Walk walk = new Walk(route);
+        assertTrue(walk.validWalk());
     }
+
+    @Test
+    public void validWalkCharArrayDoesNotReturnToStartReturnFalse(){
+        char[] route = new char[]{'w','w','w','w','w','w','w','w','w','w'};
+        Walk walk = new Walk(route);
+        assertFalse(walk.validWalk());
+    }
+
+
 
 
 }
